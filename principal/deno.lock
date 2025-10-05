@@ -1,0 +1,12 @@
+{
+  "version": "4",
+  "remote": {
+    "https://cdn.jsdelivr.net/gh/pocketbase/js-sdk@latest/dist/pocketbase.es.js": "058732788f0fb720b753816202d1ef834d4f28dddb898c8f4bcd5bbaf6e84d60",
+    "https://cdn.jsdelivr.net/npm/pocketbase@0.21.1/dist/pocketbase.es.mjs": "e0ddd1f6c7fcac4c34be94797da059427718070401f79f9613b7680f24905ecd"
+  },
+  "workspace": {
+    "dependencies": [
+      "jsr:@std/assert@1"
+    ]
+  }
+}

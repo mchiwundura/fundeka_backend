@@ -1,0 +1,76 @@
+Table courses {
+  id text [pk]
+  title text
+  color text
+  icon text
+  level text
+  examination_body text
+  created datetime
+  updated datetime
+}
+
+Table lessons {
+  id text [pk]
+  title text
+  description text
+  content text
+  audio text
+  order int
+  course text
+  created datetime
+  updated datetime
+}
+
+Table concepts {
+  id text [pk]
+  title text
+  outcome text
+  order int
+  lesson text
+  parent text
+  created datetime
+  updated datetime
+}
+
+Table flashcards {
+  id text [pk]
+  front text
+  back text
+  difficulty int
+  lesson text
+  concept text
+  created datetime
+  updated datetime
+}
+
+Table questions {
+  id text [pk]
+  question text
+  answer text
+  type text
+  source text
+  difficulty int
+  lesson text
+  concept text
+  created datetime
+  updated datetime
+}
+
+Table calendar_events {
+  id text [pk]
+  title text
+  start date
+  end date
+  course text
+  created datetime
+  updated datetime
+}
+
+Ref: lessons.course > courses.id
+Ref: concepts.lesson > lessons.id
+Ref: concepts.parent > concepts.id
+Ref: flashcards.lesson > lessons.id
+Ref: flashcards.concept > concepts.id
+Ref: questions.lesson > lessons.id
+Ref: questions.concept > concepts.id
+Ref: calendar_events.course > courses.id
