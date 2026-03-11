@@ -19,6 +19,7 @@ class Course(models.Model):
 class Lesson(models.Model):
     id = models.CharField(primary_key=True, max_length=100)
     title = models.TextField()
+    title = models.TextField()
     description = models.TextField(blank=True, null=True)
     content = models.TextField(blank=True, null=True)
     audio = models.TextField(blank=True, null=True)
@@ -42,6 +43,7 @@ class Concept(models.Model):
     title = models.TextField()
     outcome = models.TextField(blank=True, null=True)
     order = models.IntegerField()
+    difficulty = models.IntegerField()
 
     lesson = models.ForeignKey(
         Lesson,
@@ -68,7 +70,6 @@ class Flashcard(models.Model):
     id = models.CharField(primary_key=True, max_length=100)
     front = models.TextField()
     back = models.TextField()
-    difficulty = models.IntegerField()
 
     lesson = models.ForeignKey(
         Lesson,

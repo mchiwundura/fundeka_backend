@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/6.0/ref/settings/
 """
 
+import environ
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -24,6 +25,8 @@ SECRET_KEY = 'django-insecure-e1r7-_0cutngdt)uzbvx@f#@$cni1o=9yom%uw_fk4r3((vo*-
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+env = environ.Env()
+environ.Env.read_env(BASE_DIR / ".env")
 
 ALLOWED_HOSTS = []
 
@@ -78,9 +81,13 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+         "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": env("POSTGRES_DB"),               # from your .env or docker-compose
+        "USER": env("POSTGRES_USER"),               # from .env
+        "PASSWORD": env("POSTGRES_PASSWORD"),
+        "HOST": env("POSTGRES_HOST"),
+        "PORT": env("POSTGRES_PORT"),              
     }
 }
 
