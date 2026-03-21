@@ -15,11 +15,13 @@ from .serializers import (
     QuestionSerializer,
     CalendarEventSerializer,
 )
+from rest_framework.permissions import IsAdminUser
 
 
 # Create your views here.
 
 class CourseViewSet(viewsets.ModelViewSet):
+    permission_classes = [IsAdminUser]
     queryset = Course.objects.all()
     serializer_class = CourseSerializer
 

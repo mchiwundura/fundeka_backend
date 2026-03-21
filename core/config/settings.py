@@ -1,3 +1,5 @@
+from datetime import timedelta
+
 """
 Django settings for config project.
 
@@ -45,6 +47,10 @@ INSTALLED_APPS = [
     # My apps
     'courses',
     'users',
+    # Authentication
+    'rest_framework.authtoken',
+    'dj_rest_auth',
+    'rest_framework_simplejwt'
 ]
 
 MIDDLEWARE = [
@@ -76,6 +82,26 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'config.wsgi.application'
 
+REST_FRAMEWORK = {
+            'DEFAULT_AUTHENTICATION_CLASSES': (
+                'rest_framework_simplejwt.authentication.JWTAuthentication',
+            )
+}
+
+
+# djangorestframework-simplejwt
+SIMPLE_JWT = {
+    "ACCESS_TOKEN_LIFETIME": timedelta(hours=1),
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
+}
+
+# dj-rest-auth
+REST_AUTH = {
+    "USE_JWT": True,
+    "JWT_AUTH_COOKIE": "_auth",  # Name of access token cookie
+    "JWT_AUTH_REFRESH_COOKIE": "_refresh", # Name of refresh token cookie
+    "JWT_AUTH_HTTPONLY": False,  # Makes sure refresh token is sent
+}
 
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
